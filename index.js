@@ -1,12 +1,111 @@
-//Build out and test JS code
-//Then organize into classes after
+class App {
+  static container() {
+    return document.getElementById("application");
+  }
+}
 
-let loginButton = document.querySelector("#login input[type='submit']");
-let userName = document.getElementById("username");
-let password = document.getElementById("password");
+class Login {
+  static renderLoginCard() {
+    const loginContainer = document.createElement("div");
+    loginContainer.id = "login";
+    loginContainer.classList.add(
+      "card",
+      "animate__animated",
+      "animate__fadeInUp"
+    );
 
-loginButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  console.log(userName.value);
-  console.log(password.value);
-});
+    const loginForm = document.createElement("form");
+    const inputUsername = document.createElement("input");
+    const inputPassword = document.createElement("input");
+    const submitBtn = document.createElement("button");
+
+    inputUsername.id = "username";
+    inputUsername.type = "text";
+    inputUsername.placeholder = "username";
+
+    inputPassword.id = "password";
+    inputPassword.type = "password";
+    inputPassword.placeholder = "password";
+
+    submitBtn.className = "btn-primary";
+    submitBtn.innerText = "LOGIN";
+    submitBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      console.log("Login Button works");
+      this.sendLoginData();
+    });
+
+    loginForm.append(
+      inputUsername,
+      inputPassword,
+      submitBtn,
+      this.renderLinkToSignup()
+    );
+    loginContainer.append(loginForm);
+
+    App.container().append(loginContainer);
+  }
+
+  static renderLinkToSignup() {
+    const signUpElement = document.createElement("p");
+    const signUpLink = document.createElement("a");
+
+    signUpElement.className = "center-text";
+    signUpElement.innerText = "Don't have an account?";
+
+    signUpLink.innerText = " Sign Up";
+    signUpLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      console.log("load the sign up page");
+    });
+
+    signUpElement.appendChild(signUpLink);
+
+    return signUpElement;
+  }
+
+  static formData() {
+    const userName = document.getElementById("username");
+    const password = document.getElementById("password");
+
+    const user = {
+      username: userName.value,
+      password: password.value,
+    };
+
+    return user;
+  }
+
+  static sendLoginData() {
+    fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        user: this.formData(),
+      }),
+    })
+      .then((r) => r.json())
+      .then((obj) => {
+        if (obj.user) {
+          console.log("Found a user");
+          this.removeLoginCard();
+        } else {
+          this.renderError(obj);
+        }
+      });
+  }
+
+  static renderError(error) {
+    alert(error["message"]);
+  }
+
+  static removeLoginCard() {
+    const loginContainer = document.getElementById("login");
+    loginContainer.remove();
+  }
+}
+
+Login.renderLoginCard();

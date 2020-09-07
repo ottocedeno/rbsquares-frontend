@@ -3,4 +3,85 @@
   margin: 0px;
   padding: 0px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #e6e6e6;
+  box-sizing: border-box;
+}
+input {
+  display: block;
+}
+a {
+  text-decoration: none;
+}
+
+/* Colors */
+body {
+  background-color: #148f51;
+  color: #e6e6e6;
+}
+
+/* Positioning */
+.center-text {
+  text-align: center;
+}
+
+/* Layouts */
+.wrapper {
+  margin: 0 auto;
+  padding: 0 30px 0 30px;
+  max-width: 500px;
+}
+
+.flex {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Elements */
+.logo {
+  font-weight: bold;
+  font-size: 2.1rem;
+}
+
+.card {
+  padding: 0 30px 0 30px;
+}
+
+button.btn-primary {
+  margin-top: 30px;
+  width: 100%;
+  background-color: #e6e6e6;
+  border: none;
+  border-radius: 5px;
+  color: #24272b;
+  font-weight: bolder;
+  font-size: 1.1em;
+  min-height: 50px;
+  box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+}
+
+#login input {
+  margin-top: 30px;
+  padding: 10px 0px 10px 10px;
+  width: 100%;
+  background-color: #148f51;
+  color: #e6e6e6;
+  border: none;
+  border-bottom: solid 2px #e6e6e6;
+  font-size: 1em;
+}
+
+#login p {
+  margin-top: 30px;
+  font-size: 0.9em;
+}
+
+#login p a {
+  color: #24272b;
+}
+
+::placeholder {
+  color: #e6e6e6;
 }
