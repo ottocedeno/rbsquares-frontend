@@ -15,6 +15,10 @@ class App {
     sessionStorage.setItem("jwt_token", token);
   }
 
+  clearSession() {
+    sessionStorage.clear();
+  }
+
   clearDOM() {
     while (this.container.firstChild) {
       this.container.removeChild(this.container.firstChild);
