@@ -1,18 +1,20 @@
 class App {
-  static container() {
-    return document.getElementById("application");
+  constructor() {
+    this.container = document.getElementById("application");
+  }
+
+  clearDOM() {
+    while (this.container.firstChild) {
+      this.container.removeChild(this.container.firstChild);
+    }
   }
 }
 
 class Login {
-  static renderLoginCard() {
+  static renderLoginCard(animation) {
     const loginContainer = document.createElement("div");
     loginContainer.id = "login";
-    loginContainer.classList.add(
-      "card",
-      "animate__animated",
-      "animate__fadeInUp"
-    );
+    loginContainer.classList.add("card", "animate__animated", animation);
 
     const loginForm = document.createElement("form");
     const inputUsername = document.createElement("input");
@@ -43,7 +45,7 @@ class Login {
     );
     loginContainer.append(loginForm);
 
-    App.container().append(loginContainer);
+    APP.container.append(loginContainer);
   }
 
   static renderLinkToSignup() {
@@ -91,7 +93,8 @@ class Login {
       .then((obj) => {
         if (obj.user) {
           console.log("Found a user");
-          this.removeLoginCard();
+          APP.clearDOM();
+          APP.container.innerHTML = "<p>Loading the Game</p>";
         } else {
           this.renderError(obj);
         }
@@ -108,4 +111,5 @@ class Login {
   }
 }
 
-Login.renderLoginCard();
+const APP = new App();
+Login.renderLoginCard("animate__fadeInUp");

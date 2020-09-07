@@ -11,6 +11,7 @@ input {
 }
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 /* Colors */
@@ -42,6 +43,7 @@ body {
 .logo {
   font-weight: bold;
   font-size: 2.1rem;
+  margin-bottom: 10px;
 }
 
 .card {
