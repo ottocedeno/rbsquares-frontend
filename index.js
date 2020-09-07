@@ -4,11 +4,15 @@ class App {
   }
 
   run() {
-    if (sessionStorage.getItem("jwt")) {
+    if (sessionStorage.getItem("jwt_token")) {
       //Load game
     } else {
       Login.renderLoginCard("animate__fadeInUp");
     }
+  }
+
+  setSession(token) {
+    sessionStorage.setItem("jwt_token", token);
   }
 
   clearDOM() {
@@ -100,7 +104,8 @@ class Login {
       .then((r) => r.json())
       .then((obj) => {
         if (obj.user) {
-          console.log("Found a user");
+          console.log(obj);
+          APP.setSession(obj.jwt);
           APP.clearDOM();
           APP.container.innerHTML = "<p>Loading the Game</p>";
         } else {
