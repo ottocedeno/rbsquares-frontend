@@ -3,6 +3,14 @@ class App {
     this.container = document.getElementById("application");
   }
 
+  run() {
+    if (sessionStorage.getItem("jwt")) {
+      //Load game
+    } else {
+      Login.renderLoginCard("animate__fadeInUp");
+    }
+  }
+
   clearDOM() {
     while (this.container.firstChild) {
       this.container.removeChild(this.container.firstChild);
@@ -112,4 +120,4 @@ class Login {
 }
 
 const APP = new App();
-Login.renderLoginCard("animate__fadeInUp");
+APP.run();
