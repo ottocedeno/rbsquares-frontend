@@ -6,21 +6,18 @@ class App {
   run() {
     if (sessionStorage.getItem("jwt_token")) {
       //Load game
-      loadGame();
+      // this.loadGame();
     } else {
       Login.renderLoginCard("animate__fadeInUp");
     }
   }
 
-  setSession(token) {
-    sessionStorage.setItem("jwt_token", token);
-  }
-
   loadGame(userObj) {
     //save token
-    this.setSession(userObj.jwt);
+    // this.setSession(userObj.jwt);
 
     //save user
+    this.setUser(userObj);
 
     //clearDOM
     this.clearDOM();
@@ -29,8 +26,17 @@ class App {
     //Load Game
   }
 
+  setSession(token) {
+    sessionStorage.setItem("jwt_token", token);
+  }
+
   clearSession() {
     sessionStorage.clear();
+  }
+
+  setUser(userObj) {
+    const { username, balance, winstreak } = userObj.user.data.attributes;
+    USER = new User(username, balance, winstreak);
   }
 
   clearDOM() {
