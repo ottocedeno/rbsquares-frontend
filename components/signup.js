@@ -77,13 +77,10 @@ class SignUp {
         user: this.formData(),
       }),
     })
-      .then((r) => r.json())
-      .then((obj) => {
-        if (obj.user) {
-          console.log(obj);
-          APP.setSession(obj.jwt);
-          APP.clearDOM();
-          APP.container.innerHTML = "<p>Loading the Game</p>";
+      .then((resp) => resp.json())
+      .then((userObj) => {
+        if (userObj.user) {
+          APP.loadGame(userObj);
         } else {
           this.renderError(obj);
         }
