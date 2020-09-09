@@ -21,7 +21,6 @@ class Login {
     submitBtn.innerText = "LOGIN";
     submitBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      console.log("Login Button works");
       this.sendLoginData();
     });
 
@@ -78,13 +77,10 @@ class Login {
         user: this.formData(),
       }),
     })
-      .then((r) => r.json())
-      .then((obj) => {
-        if (obj.user) {
-          console.log(obj);
-          APP.setSession(obj.jwt);
-          APP.clearDOM();
-          APP.container.innerHTML = "<p>Loading the Game</p>";
+      .then((resp) => resp.json())
+      .then((userObj) => {
+        if (userObj.user) {
+          APP.loadGame(userObj);
         } else {
           this.renderError(obj);
         }
