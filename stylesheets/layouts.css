@@ -11,3 +11,8 @@
   flex-direction: column;
   justify-content: center;
 }
+
+/* Text Positioning */
+.center-text {
+  text-align: center;
+}
