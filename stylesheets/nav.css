@@ -1,0 +1,23 @@
+/* Navigation */
+
+header {
+  padding: 15px 0 15px 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+li#balance {
+  font-weight: bolder;
+}
+
+nav ul:last-child {
+  display: flex;
+}
+
+li#rules {
+  margin-left: 12px;
+}
