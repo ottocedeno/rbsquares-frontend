@@ -10,14 +10,22 @@ body {
   margin-bottom: 10px;
 }
 
+.section-label {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
 .card {
   padding: 0 30px 0 30px;
 }
 
+/* Buttons */
 button.btn-primary {
   margin-top: 30px;
   width: 100%;
   background-color: #e6e6e6;
+  border: 2px solid #e6e6e6;
   border: none;
   border-radius: 5px;
   color: #24272b;
@@ -26,6 +34,14 @@ button.btn-primary {
   min-height: 50px;
   box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.16);
   cursor: pointer;
+}
+
+button:disabled {
+  box-shadow: none;
+  border: 2px solid #e6e6e6;
+  background: none;
+  color: #e6e6e6;
+  opacity: 0.8;
 }
 
 #dim {

@@ -16,37 +16,23 @@
     <script src="./components/user.js"></script>
   </head>
   <body>
-    <div
-      id="application"
-      class="wrapper"
-      style="
-        border: 1px solid red;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-      "
-    >
-      <header style="border: 1px solid orange; padding-top: 15px">
-        <nav style="display: flex; justify-content: space-between">
+    <div id="application" class="wrapper flex flex-col">
+      <header>
+        <nav>
           <ul>
             <li id="username">Username</li>
-            <li id="balance" style="font-weight: bolder">$500</li>
+            <li id="balance">$500</li>
           </ul>
-          <ul style="display: flex">
+          <ul>
             <li id="scoreboard">Scoreboard</li>
-            <li id="rules" style="margin-left: 12px">Rules</li>
+            <li id="rules">Rules</li>
           </ul>
         </nav>
       </header>
 
-      <div
-        id="board-container"
-        style="border: 1px solid orange; margin-top: 20px; min-height: 341px"
-      >
-        <h2 style="text-align: center; margin-bottom: 20px; font-size: 1.1rem">
-          SELECT A SQUARE
-        </h2>
-        <div id="squares-grid" style="border: 1px solid blue">
+      <div id="board-container">
+        <h2 class="section-label">PICK A SQUARE</h2>
+        <div id="squares-grid">
           <div class="square sq-black"></div>
           <div class="square sq-red"></div>
           <div class="square sq-black"></div>
@@ -67,28 +53,23 @@
           <div class="square sq-red"></div>
           <div class="square sq-black"></div>
           <div class="square sq-red"></div>
+          <div class="square sq-black"></div>
+          <div class="square sq-red"></div>
+          <div class="square sq-black"></div>
+          <div class="square sq-red"></div>
+          <div class="square sq-black"></div>
         </div>
       </div>
 
-      <div
-        id="bet-container"
-        style="
-          border: 1px solid orange;
-          margin-top: 20px;
-          padding: 0 30px 0 30px;
-        "
-      >
-        <h2 style="text-align: center; margin-bottom: 20px">MAKE A BET</h2>
-        <div
-          id="bet-selectors"
-          style="display: flex; justify-content: space-between"
-        >
+      <div id="bet-container">
+        <h2 class="section-label">MAKE A BET</h2>
+        <div id="bet-selectors">
           <div class="btn-bet">10</div>
-          <div class="btn-bet bet-select">25</div>
+          <div class="btn-bet">25</div>
           <div class="btn-bet">50</div>
           <div class="btn-bet">100</div>
         </div>
-        <button class="btn-primary">SPIN</button>
+        <button class="btn-primary" disabled>SPIN</button>
       </div>
     </div>
     <script src="index.js"></script>
