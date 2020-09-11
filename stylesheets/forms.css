@@ -2,7 +2,7 @@
 
 #login input,
 #signup input {
-  margin-top: 30px;
+  margin-bottom: 30px;
   padding: 10px 0px 10px 10px;
   width: 100%;
   background-color: #148f51;
@@ -12,10 +12,14 @@
   font-size: 1em;
 }
 
+#welcome-container {
+  margin-top: 30px;
+  min-height: 270px;
+}
 #login p,
 #signup p {
-  margin-top: 30px;
   font-size: 0.9em;
+  margin-top: 30px;
 }
 
 #login p a,
