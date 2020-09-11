@@ -1,0 +1,50 @@
+/* Game Board */
+#squares-grid {
+  min-height: 310px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.square {
+  height: 58px;
+  width: 58px;
+  border-radius: 5px;
+  opacity: 0.8;
+}
+
+.sq-black {
+  background-color: #24272b;
+}
+
+.sq-red {
+  background-color: #c73c3c;
+}
+
+/* Betting Area */
+.btn-bet {
+  border: 2px solid #e6e6e6;
+  height: 45px;
+  width: 45px;
+  /* padding: 13px; */
+  border-radius: 50%;
+  opacity: 0.8;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.btn-bet:hover {
+  opacity: 1;
+}
+
+.bet-select {
+  opacity: 1;
+  background-color: #e6e6e6;
+  color: #24272b;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.32);
+}
