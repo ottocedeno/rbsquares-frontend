@@ -8,7 +8,8 @@ class App {
       //Load game
       // this.loadGame();
     } else {
-      Login.renderLoginCard("animate__fadeInUp");
+      this.createWelcomeContainer();
+      Login.renderLogin("animate__fadeInUp");
     }
   }
 
@@ -26,6 +27,12 @@ class App {
     //Load Game
   }
 
+  createWelcomeContainer() {
+    const welcomeContainer = document.createElement("div");
+    welcomeContainer.id = "welcome-container";
+
+    this.container.appendChild(welcomeContainer);
+  }
   setSession(token) {
     sessionStorage.setItem("jwt_token", token);
   }

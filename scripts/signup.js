@@ -1,8 +1,10 @@
 class SignUp {
-  static renderSignUpCard(animation) {
-    const signUpContainer = document.createElement("div");
-    signUpContainer.id = "signup";
-    signUpContainer.classList.add("card", "animate__animated", animation);
+  static renderSignUp(animation) {
+    const layoutContainer = document.getElementById("welcome-container");
+
+    const signUpCard = document.createElement("div");
+    signUpCard.id = "signup";
+    signUpCard.classList.add("card", "animate__animated", animation);
 
     const signUpForm = document.createElement("form");
     const inputUsername = document.createElement("input");
@@ -30,9 +32,9 @@ class SignUp {
       submitBtn,
       this.renderLinkToLogin()
     );
-    signUpContainer.append(signUpForm);
 
-    APP.container.append(signUpContainer);
+    signUpCard.append(signUpForm);
+    layoutContainer.append(signUpCard);
   }
 
   static renderLinkToLogin() {
@@ -45,8 +47,10 @@ class SignUp {
     loginLink.innerText = " Login";
     loginLink.addEventListener("click", (e) => {
       e.preventDefault();
-      this.removeSignUpCard();
-      Login.renderLoginCard("animate__bounceInRight");
+      this.removeSignUp();
+      setTimeout(function () {
+        Login.renderLogin("animate__bounceInRight");
+      }, 400);
     });
 
     loginElement.appendChild(loginLink);
@@ -91,12 +95,12 @@ class SignUp {
     alert(error["message"]);
   }
 
-  static removeSignUpCard() {
-    const signUpContainer = document.getElementById("signup");
-    signUpContainer.classList.remove("animate__fadeInUp");
-    signUpContainer.classList.add("animate__bounceOutLeft");
+  static removeSignUp() {
+    const signUpCard = document.getElementById("signup");
+    signUpCard.classList.remove("animate__fadeInUp");
+    signUpCard.classList.add("animate__bounceOutLeft");
     setTimeout(function () {
-      signUpContainer.remove();
-    }, 1000);
+      signUpCard.remove();
+    }, 400);
   }
 }
