@@ -58,18 +58,6 @@ class SignUp {
     return loginElement;
   }
 
-  static formData() {
-    const userName = document.getElementById("username");
-    const password = document.getElementById("password");
-
-    const user = {
-      username: userName.value,
-      password: password.value,
-    };
-
-    return user;
-  }
-
   static sendSignUpData() {
     fetch("http://localhost:3000/users", {
       method: "POST",
@@ -78,7 +66,7 @@ class SignUp {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        user: this.formData(),
+        user: Form.UserCredentials(),
       }),
     })
       .then((resp) => resp.json())
