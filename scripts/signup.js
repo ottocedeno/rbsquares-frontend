@@ -72,9 +72,10 @@ class SignUp {
       .then((resp) => resp.json())
       .then((userObj) => {
         if (userObj.user) {
+          APP.setSession(userObj.jwt);
+          APP.setUser(userObj);
           APP.renderGameLayout(userObj);
         } else {
-          console.log(userObj);
           Utility.renderError(userObj.message);
         }
       });

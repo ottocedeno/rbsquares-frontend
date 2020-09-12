@@ -5,17 +5,15 @@ class App {
 
   run() {
     if (sessionStorage.getItem("jwt_token")) {
-      this.renderGameLayout();
+      this.retrieveUser();
+      setTimeout(() => this.renderGameLayout(), 1000);
     } else {
       this.createWelcomeContainer();
       Login.renderLogin("animate__fadeInUp");
     }
   }
 
-  renderGameLayout(user) {
-    this.setSession(user.jwt);
-    this.setUser(user);
-
+  renderGameLayout() {
     this.clearDOM();
     APP.container.classList.remove("flex-center");
 
@@ -29,6 +27,7 @@ class App {
 
     this.container.appendChild(welcomeContainer);
   }
+
   setSession(token) {
     sessionStorage.setItem("jwt_token", token);
   }
@@ -37,9 +36,25 @@ class App {
     sessionStorage.clear();
   }
 
+  retrieveUser() {
+    fetch("http://localhost:3000/retrieve", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("jwt_token")}`,
+      },
+    })
+      .then((resp) => resp.json())
+      .then((userObj) => {
+        console.log("response from server:");
+        console.log(userObj);
+        this.setUser(userObj);
+      });
+  }
+
   setUser(userObj) {
     const { username, balance, winstreak } = userObj.user.data.attributes;
     USER = new User(username, balance, winstreak);
+    console.log(USER);
   }
 
   clearDOM() {
