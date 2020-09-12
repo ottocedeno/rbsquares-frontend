@@ -6,7 +6,7 @@ class App {
   run() {
     if (sessionStorage.getItem("jwt_token")) {
       this.retrieveUser();
-      setTimeout(() => this.renderGameLayout(), 1000);
+      setTimeout(() => this.renderGameLayout(), 800);
     } else {
       this.createWelcomeContainer();
       Login.renderLogin("animate__fadeInUp");
@@ -19,6 +19,7 @@ class App {
 
     Nav.renderNav();
     Game.renderBoard();
+    Game.renderBetting();
   }
 
   createWelcomeContainer() {
