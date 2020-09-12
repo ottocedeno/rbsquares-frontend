@@ -13,17 +13,17 @@ class App {
     }
   }
 
-  loadGame(userObj) {
+  renderGameLayout(userObj) {
     //save token
     // this.setSession(userObj.jwt);
 
     //save user
     this.setUser(userObj);
 
-    //clearDOM
     this.clearDOM();
-    this.container.innerHTML = "<p>Loading the Game</p>";
-    //Load nav
+    APP.container.classList.remove("flex-center");
+    Nav.renderNav();
+
     //Load Game
   }
 

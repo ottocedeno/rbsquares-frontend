@@ -72,7 +72,7 @@ class SignUp {
       .then((resp) => resp.json())
       .then((userObj) => {
         if (userObj.user) {
-          APP.loadGame(userObj);
+          APP.renderGameLayout(userObj);
         } else {
           console.log(userObj);
           Utility.renderError(userObj.message);

@@ -72,7 +72,7 @@ class Login {
       .then((resp) => resp.json())
       .then((userObj) => {
         if (userObj.user) {
-          APP.loadGame(userObj);
+          APP.renderGameLayout(userObj);
         } else {
           Utility.renderError(userObj.message);
         }
