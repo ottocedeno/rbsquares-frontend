@@ -5,26 +5,22 @@ class App {
 
   run() {
     if (sessionStorage.getItem("jwt_token")) {
-      //Load game
-      // this.loadGame();
+      this.renderGameLayout();
     } else {
       this.createWelcomeContainer();
       Login.renderLogin("animate__fadeInUp");
     }
   }
 
-  renderGameLayout(userObj) {
-    //save token
-    // this.setSession(userObj.jwt);
-
-    //save user
-    this.setUser(userObj);
+  renderGameLayout(user) {
+    this.setSession(user.jwt);
+    this.setUser(user);
 
     this.clearDOM();
     APP.container.classList.remove("flex-center");
-    Nav.renderNav();
 
-    //Load Game
+    Nav.renderNav();
+    Game.renderBoard();
   }
 
   createWelcomeContainer() {
