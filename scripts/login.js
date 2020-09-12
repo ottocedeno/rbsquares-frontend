@@ -74,7 +74,7 @@ class Login {
         if (userObj.user) {
           APP.loadGame(userObj);
         } else {
-          this.renderError(obj);
+          Utility.renderError(userObj.message);
         }
       });
   }

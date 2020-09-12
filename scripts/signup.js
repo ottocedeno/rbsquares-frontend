@@ -74,13 +74,10 @@ class SignUp {
         if (userObj.user) {
           APP.loadGame(userObj);
         } else {
-          this.renderError(obj);
+          console.log(userObj);
+          Utility.renderError(userObj.message);
         }
       });
-  }
-
-  static renderError(error) {
-    alert(error["message"]);
   }
 
   static removeSignUp() {
