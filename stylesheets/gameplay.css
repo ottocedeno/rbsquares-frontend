@@ -18,6 +18,11 @@ div#board-container {
   width: 58px;
   border-radius: 5px;
   opacity: 0.8;
+  cursor: pointer;
+}
+
+.square:hover {
+  opacity: 1;
 }
 
 .sq-black {
