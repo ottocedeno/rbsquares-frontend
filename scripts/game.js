@@ -59,6 +59,25 @@ class Game {
       betButton.className = "btn-bet";
       betButton.innerText = betAmounts[i];
 
+      betButton.dataset.userBet = false;
+
+      betButton.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        let allBetButtons = Array.from(
+          document.getElementsByClassName("btn-bet")
+        );
+        let currentUserBet = allBetButtons.find(
+          (btn) => btn.dataset.userBet == "true"
+        );
+
+        if (!!currentUserBet) {
+          currentUserBet.dataset.userBet = false;
+        }
+
+        e.target.dataset.userBet = true;
+        // this.allowUserToSpin();
+      });
       betSelectors.appendChild(betButton);
     }
 

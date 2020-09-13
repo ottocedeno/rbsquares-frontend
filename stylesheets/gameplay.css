@@ -69,7 +69,7 @@ div#bet-selectors {
   opacity: 1;
 }
 
-.bet-select {
+div.btn-bet[data-user-bet="true"] {
   opacity: 1;
   background-color: #e6e6e6;
   color: #24272b;
