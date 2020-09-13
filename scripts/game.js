@@ -60,6 +60,7 @@ class Game {
       betButton.innerText = betAmounts[i];
 
       betButton.dataset.userBet = false;
+      betButton.dataset.betAmount = betAmounts[i];
 
       betButton.addEventListener("click", (e) => {
         e.preventDefault();
