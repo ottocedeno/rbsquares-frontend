@@ -46,8 +46,6 @@ class App {
     })
       .then((resp) => resp.json())
       .then((userObj) => {
-        console.log("response from server:");
-        console.log(userObj);
         this.setUser(userObj);
       });
   }
@@ -55,7 +53,6 @@ class App {
   setUser(userObj) {
     const { username, balance, winstreak } = userObj.user.data.attributes;
     USER = new User(username, balance, winstreak);
-    console.log(USER);
   }
 
   clearDOM() {

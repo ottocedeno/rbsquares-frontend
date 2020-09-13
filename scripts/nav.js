@@ -1,7 +1,5 @@
 class Nav {
   static renderNav() {
-    console.log("USER Global value is");
-    console.log(USER);
     const header = document.createElement("header");
     header.classList.add("animate__animated", "animate__fadeInDown");
     const nav = document.createElement("nav");
@@ -10,7 +8,6 @@ class Nav {
     const username = document.createElement("li");
     const balance = document.createElement("li");
     username.id = "username";
-    console.log(USER);
     username.innerText = USER.username;
     balance.id = "balance";
     balance.innerText = `$${USER.balance}`;

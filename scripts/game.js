@@ -8,16 +8,33 @@ class Game {
     const squaresGrid = document.createElement("div");
     squaresGrid.id = "squares-grid";
 
-    const GameSquares = 25;
+    const GameSquares = 30;
 
     for (let i = 0; i < GameSquares; i++) {
       let square = document.createElement("div");
       square.classList.add("square", "animate__animated", "animate__bounceIn");
+      square.dataset.number = i + 1;
+      square.dataset.userSelection = false;
       setTimeout(() => square.classList.remove("animate__bounceIn"), 300);
 
       i % 2 == 0
         ? square.classList.add("sq-black")
         : square.classList.add("sq-red");
+
+      square.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        let allSquares = Array.from(document.getElementsByClassName("square"));
+        let currentUserSquare = allSquares.find(
+          (sq) => sq.dataset.userSelection == "true"
+        );
+
+        if (!!currentUserSquare) {
+          currentUserSquare.dataset.userSelection = false;
+        }
+
+        e.target.dataset.userSelection = true;
+      });
       squaresGrid.appendChild(square);
     }
 
