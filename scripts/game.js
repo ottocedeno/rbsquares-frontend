@@ -17,9 +17,13 @@ class Game {
       square.dataset.userSelection = false;
       setTimeout(() => square.classList.remove("animate__bounceIn"), 300);
 
-      i % 2 == 0
-        ? square.classList.add("sq-black")
-        : square.classList.add("sq-red");
+      if (i % 2 == 0) {
+        square.classList.add("sq-black");
+        square.dataset.color = "black";
+      } else {
+        square.classList.add("sq-red");
+        square.dataset.color = "red";
+      }
 
       square.addEventListener("click", (e) => {
         e.preventDefault();
