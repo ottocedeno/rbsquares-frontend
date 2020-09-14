@@ -24,17 +24,12 @@ class Game {
       square.addEventListener("click", (e) => {
         e.preventDefault();
 
-        let allSquares = Array.from(document.getElementsByClassName("square"));
-        let currentUserSquare = allSquares.find(
-          (sq) => sq.dataset.userSelection == "true"
-        );
-
-        if (!!currentUserSquare) {
-          currentUserSquare.dataset.userSelection = false;
+        if (!!this.currentUserSquare()) {
+          this.currentUserSquare().dataset.userSelection = false;
         }
 
         e.target.dataset.userSelection = true;
-        this.allowUserToSpin();
+        this.enableSpin();
       });
       squaresGrid.appendChild(square);
     }
@@ -66,19 +61,12 @@ class Game {
       betButton.addEventListener("click", (e) => {
         e.preventDefault();
 
-        let allBetButtons = Array.from(
-          document.getElementsByClassName("btn-bet")
-        );
-        let currentUserBet = allBetButtons.find(
-          (btn) => btn.dataset.userBet == "true"
-        );
-
-        if (!!currentUserBet) {
-          currentUserBet.dataset.userBet = false;
+        if (!!this.currentUserBet()) {
+          this.currentUserBet().dataset.userBet = false;
         }
 
         e.target.dataset.userBet = true;
-        this.allowUserToSpin();
+        this.enableSpin();
       });
       betSelectors.appendChild(betButton);
     }
@@ -92,24 +80,41 @@ class Game {
     APP.container.append(betContainer);
   }
 
-  static allowUserToSpin() {
-    const userSquare = Array.from(
-      document.getElementsByClassName("square")
-    ).find((sq) => sq.dataset.userSelection == "true");
-
-    const userBet = Array.from(document.getElementsByClassName("btn-bet")).find(
-      (btn) => btn.dataset.userBet == "true"
-    );
-
-    if (!!userSquare && !!userBet) {
-      const spinButton = document.querySelector("div#bet-container button");
-      if (spinButton.hasAttribute("disabled")) {
-        spinButton.attributes.removeNamedItem("disabled");
+  static enableSpin() {
+    if (!!this.currentUserSquare() && !!this.currentUserBet()) {
+      if (this.spinButton().hasAttribute("disabled")) {
+        this.spinButton().attributes.removeNamedItem("disabled");
+        this.spinButton().addEventListener("click", (e) => {
+          e.preventDefault();
+          this.spin();
+        });
       }
-    } else {
-      console.log("Can't spin yet");
     }
   }
+
+  static currentUserSquare() {
+    return Array.from(document.getElementsByClassName("square")).find(
+      (square) => square.dataset.userSelection == "true"
+    );
+  }
+
+  static currentUserBet() {
+    return Array.from(document.getElementsByClassName("btn-bet")).find(
+      (btn) => btn.dataset.userBet == "true"
+    );
+  }
+
+  static spinButton() {
+    return document.querySelector("div#bet-container button");
+  }
+
+  static spin() {
+    console.log("Game has started!");
+    console.log(
+      `${USER.username} has bet ${this.currentUserBet().dataset.betAmount}`
+    );
+  }
+
   static createSectionLabel(labelText) {
     const label = document.createElement("h2");
     label.className = "section-label";
