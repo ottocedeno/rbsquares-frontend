@@ -102,8 +102,12 @@ class Game {
     }
   }
 
+  static allSquares() {
+    return Array.from(document.getElementsByClassName("square"));
+  }
+
   static userSquare() {
-    return Array.from(document.getElementsByClassName("square")).find(
+    return this.allSquares().find(
       (square) => square.dataset.userSelection == "true"
     );
   }
