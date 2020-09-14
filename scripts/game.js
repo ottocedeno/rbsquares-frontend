@@ -28,8 +28,8 @@ class Game {
       square.addEventListener("click", (e) => {
         e.preventDefault();
 
-        if (!!this.currentUserSquare()) {
-          this.currentUserSquare().dataset.userSelection = false;
+        if (!!this.UserSquare()) {
+          this.UserSquare().dataset.userSelection = false;
         }
 
         e.target.dataset.userSelection = true;
@@ -65,8 +65,8 @@ class Game {
       betButton.addEventListener("click", (e) => {
         e.preventDefault();
 
-        if (!!this.currentUserBet()) {
-          this.currentUserBet().dataset.userBet = false;
+        if (!!this.UserBet()) {
+          this.UserBet().dataset.userBet = false;
         }
 
         e.target.dataset.userBet = true;
@@ -85,7 +85,7 @@ class Game {
   }
 
   static enableSpin() {
-    if (!!this.currentUserSquare() && !!this.currentUserBet()) {
+    if (!!this.UserSquare() && !!this.UserBet()) {
       if (this.spinButton().hasAttribute("disabled")) {
         this.spinButton().attributes.removeNamedItem("disabled");
         this.spinButton().addEventListener("click", (e) => {
@@ -96,13 +96,13 @@ class Game {
     }
   }
 
-  static currentUserSquare() {
+  static UserSquare() {
     return Array.from(document.getElementsByClassName("square")).find(
       (square) => square.dataset.userSelection == "true"
     );
   }
 
-  static currentUserBet() {
+  static UserBet() {
     return Array.from(document.getElementsByClassName("btn-bet")).find(
       (btn) => btn.dataset.userBet == "true"
     );
@@ -115,7 +115,11 @@ class Game {
   static spin() {
     console.log("Game has started!");
     console.log(
-      `${USER.username} has bet ${this.currentUserBet().dataset.betAmount}`
+      `${USER.username} has bet ${
+        this.UserBet().dataset.betAmount
+      } on square number ${this.UserSquare().dataset.number} ${
+        this.UserSquare().dataset.color
+      }`
     );
   }
 
