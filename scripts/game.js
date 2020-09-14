@@ -1,6 +1,6 @@
 class Game {
-  constructor(userSquare, userColor, userBet) {
-    this.userSquare = userSquare;
+  constructor(userSquareNumber, userColor, userBet) {
+    this.userSquareNumber = userSquareNumber;
     this.userColor = userColor;
     this.userBet = userBet;
   }
@@ -121,12 +121,21 @@ class Game {
     );
   }
 
+  static userBetAmount() {
+    return this.userBet().dataset.betAmount;
+  }
+
   static spinButton() {
     return document.querySelector("div#bet-container button");
   }
 
   static spin() {
-    const newGame = new Game();
+    const newGame = new Game(
+      this.userSquareNumber(),
+      this.userSquareColor(),
+      this.userBetAmount()
+    );
+    console.log(newGame);
   }
 
   static createSectionLabel(labelText) {
