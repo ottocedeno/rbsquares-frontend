@@ -34,6 +34,7 @@ class Game {
         }
 
         e.target.dataset.userSelection = true;
+        this.allowUserToSpin();
       });
       squaresGrid.appendChild(square);
     }
@@ -77,7 +78,7 @@ class Game {
         }
 
         e.target.dataset.userBet = true;
-        // this.allowUserToSpin();
+        this.allowUserToSpin();
       });
       betSelectors.appendChild(betButton);
     }
@@ -91,6 +92,24 @@ class Game {
     APP.container.append(betContainer);
   }
 
+  static allowUserToSpin() {
+    const userSquare = Array.from(
+      document.getElementsByClassName("square")
+    ).find((sq) => sq.dataset.userSelection == "true");
+
+    const userBet = Array.from(document.getElementsByClassName("btn-bet")).find(
+      (btn) => btn.dataset.userBet == "true"
+    );
+
+    if (!!userSquare && !!userBet) {
+      const spinButton = document.querySelector("div#bet-container button");
+      if (spinButton.hasAttribute("disabled")) {
+        spinButton.attributes.removeNamedItem("disabled");
+      }
+    } else {
+      console.log("Can't spin yet");
+    }
+  }
   static createSectionLabel(labelText) {
     const label = document.createElement("h2");
     label.className = "section-label";
