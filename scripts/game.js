@@ -1,4 +1,10 @@
 class Game {
+  constructor(userSquare, userColor, userBet) {
+    this.userSquare = userSquare;
+    this.userColor = userColor;
+    this.userBet = userBet;
+  }
+
   static renderBoard() {
     const boardContainer = document.createElement("div");
     boardContainer.id = "board-container";
@@ -28,8 +34,8 @@ class Game {
       square.addEventListener("click", (e) => {
         e.preventDefault();
 
-        if (!!this.UserSquare()) {
-          this.UserSquare().dataset.userSelection = false;
+        if (!!this.userSquare()) {
+          this.userSquare().dataset.userSelection = false;
         }
 
         e.target.dataset.userSelection = true;
@@ -65,8 +71,8 @@ class Game {
       betButton.addEventListener("click", (e) => {
         e.preventDefault();
 
-        if (!!this.UserBet()) {
-          this.UserBet().dataset.userBet = false;
+        if (!!this.userBet()) {
+          this.userBet().dataset.userBet = false;
         }
 
         e.target.dataset.userBet = true;
@@ -85,7 +91,7 @@ class Game {
   }
 
   static enableSpin() {
-    if (!!this.UserSquare() && !!this.UserBet()) {
+    if (!!this.userSquare() && !!this.userBet()) {
       if (this.spinButton().hasAttribute("disabled")) {
         this.spinButton().attributes.removeNamedItem("disabled");
         this.spinButton().addEventListener("click", (e) => {
@@ -96,13 +102,20 @@ class Game {
     }
   }
 
-  static UserSquare() {
+  static userSquare() {
     return Array.from(document.getElementsByClassName("square")).find(
       (square) => square.dataset.userSelection == "true"
     );
   }
 
-  static UserBet() {
+  static userSquareNumber() {
+    return this.userSquare().dataset.number;
+  }
+  static userSquareColor() {
+    return this.userSquare().dataset.color;
+  }
+
+  static userBet() {
     return Array.from(document.getElementsByClassName("btn-bet")).find(
       (btn) => btn.dataset.userBet == "true"
     );
@@ -113,14 +126,7 @@ class Game {
   }
 
   static spin() {
-    console.log("Game has started!");
-    console.log(
-      `${USER.username} has bet ${
-        this.UserBet().dataset.betAmount
-      } on square number ${this.UserSquare().dataset.number} ${
-        this.UserSquare().dataset.color
-      }`
-    );
+    const newGame = new Game();
   }
 
   static createSectionLabel(labelText) {
