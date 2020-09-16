@@ -144,6 +144,7 @@ class Game {
     console.log(AI.matchingColor(gameTurn));
     console.log(AI.matchingSquare(gameTurn));
     AI.renderWinningSquare();
+    console.log(AI.payoutTotal(gameTurn));
   }
 
   static createSectionLabel(labelText) {

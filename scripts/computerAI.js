@@ -60,4 +60,15 @@ class ComputerAI {
   renderWinningSquare() {
     this.winningSquare.classList.add("winning-square", "animate__tada");
   }
+
+  payoutTotal(gameTurn) {
+    let payout = 0;
+    if (this.matchingColor(gameTurn)) {
+      payout += gameTurn.userBet;
+    }
+    if (this.matchingSquare(gameTurn)) {
+      payout += gameTurn.userBet * 30;
+    }
+    return payout;
+  }
 }
