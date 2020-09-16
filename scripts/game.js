@@ -113,7 +113,7 @@ class Game {
   }
 
   static userSquareNumber() {
-    return this.userSquare().dataset.number;
+    return parseInt(this.userSquare().dataset.number);
   }
   static userSquareColor() {
     return this.userSquare().dataset.color;
@@ -126,7 +126,7 @@ class Game {
   }
 
   static userBetAmount() {
-    return this.userBet().dataset.betAmount;
+    return parseInt(this.userBet().dataset.betAmount);
   }
 
   static spinButton() {
@@ -134,12 +134,16 @@ class Game {
   }
 
   static spin() {
-    const newGame = new Game(
+    const gameTurn = new Game(
       this.userSquareNumber(),
       this.userSquareColor(),
       this.userBetAmount()
     );
-    console.log(newGame);
+    const AI = new ComputerAI();
+    console.log(AI.winningNumber);
+    console.log(AI.matchingColor(gameTurn));
+    console.log(AI.matchingSquare(gameTurn));
+    AI.renderWinningSquare();
   }
 
   static createSectionLabel(labelText) {

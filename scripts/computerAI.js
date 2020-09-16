@@ -1,6 +1,7 @@
 class ComputerAI {
   constructor() {
     this.winningNumber = this.GenerateWinningNumber();
+    this.winningSquare = this.findWinningSquare();
     this.squareIndexes = [
       1,
       2,
@@ -48,12 +49,15 @@ class ComputerAI {
 
   matchingSquare(gameTurn) {
     return (
-      parseInt(this.findWinningSquare().dataset.number) ==
-      gameTurn.userSquareNumber
+      parseInt(this.winningSquare.dataset.number) == gameTurn.userSquareNumber
     );
   }
 
   matchingColor(gameTurn) {
-    return this.findWinningSquare().dataset.color == gameTurn.userColor;
+    return this.winningSquare.dataset.color == gameTurn.userColor;
+  }
+
+  renderWinningSquare() {
+    this.winningSquare.classList.add("winning-square", "animate__tada");
   }
 }
