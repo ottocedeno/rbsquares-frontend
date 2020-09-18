@@ -1,18 +1,6 @@
 class ComputerAI {
-  constructor() {
-    this.winningNumber = this.GenerateWinningNumber();
-    this.winningSquare = this.findWinningSquare();
-  }
-  GenerateWinningNumber() {
+  static generateWinningNumber() {
     return Math.ceil(Math.random() * 30);
-  }
-
-  findWinningSquare() {
-    const allSquares = Game.allSquares();
-    const winningSquare = allSquares.find(
-      (square) => parseInt(square.dataset.number) == this.winningNumber
-    );
-    return winningSquare;
   }
 
   matchingSquare(gameTurn) {

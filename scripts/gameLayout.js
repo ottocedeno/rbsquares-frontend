@@ -113,7 +113,7 @@ class GameLayout {
         this.spinButton().attributes.removeNamedItem("disabled");
         this.spinButton().addEventListener("click", (e) => {
           e.preventDefault();
-          this.spin();
+          Game.spin();
         });
       }
     }
