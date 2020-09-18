@@ -1,4 +1,4 @@
 let USER;
 
-const APP = new App();
+const APP = new Application();
 APP.run();
