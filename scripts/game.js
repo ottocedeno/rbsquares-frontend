@@ -1,22 +1,29 @@
 class Game {
   constructor() {
-    this.userSquareNumber = this.userSquareNumber();
-    this.userColor = this.userSquareColor();
-    this.userBet = this.userBetAmount();
+    this.userSquareNumber = this.findUserSquareNumber();
+    this.userColor = this.findUserSquareColor();
+    this.userBet = this.findUserBetAmount();
     this.winningSquareNumber = ComputerAI.generateWinningNumber();
     this.winningSquare = this.findWinningSquare();
-    this.winningColor = this.winningColor();
+    this.winningColor = this.findWinningColor();
+    this.payout = this.calculatePayout();
   }
 
-  userSquareNumber() {
+  static spin() {
+    const game = new Game();
+    console.log(game);
+    debugger;
+  }
+
+  findUserSquareNumber() {
     return parseInt(GameLayout.userSquare().dataset.number);
   }
 
-  userSquareColor() {
+  findUserSquareColor() {
     return GameLayout.userSquare().dataset.color;
   }
 
-  userBetAmount() {
+  findUserBetAmount() {
     return parseInt(GameLayout.userBet().dataset.betAmount);
   }
 
@@ -26,12 +33,26 @@ class Game {
     );
   }
 
-  winningColor() {
+  findWinningColor() {
     return this.winningSquare.dataset.color;
   }
 
-  static spin() {
-    const game = new Game();
-    console.log(game);
+  matchingSquare() {
+    return this.winningSquareNumber == this.userSquareNumber;
+  }
+
+  matchingColor() {
+    return this.winningColor == this.userColor;
+  }
+
+  calculatePayout() {
+    let payout = 0;
+    if (this.matchingColor()) {
+      payout += this.userBet;
+    }
+    if (this.matchingSquare()) {
+      payout += this.userBet * 30;
+    }
+    return payout;
   }
 }
