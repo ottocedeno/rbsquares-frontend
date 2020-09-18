@@ -2,38 +2,6 @@ class ComputerAI {
   constructor() {
     this.winningNumber = this.GenerateWinningNumber();
     this.winningSquare = this.findWinningSquare();
-    this.squareIndexes = [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19,
-      20,
-      21,
-      22,
-      23,
-      24,
-      25,
-      26,
-      27,
-      28,
-      29,
-      30,
-    ];
   }
   GenerateWinningNumber() {
     return Math.ceil(Math.random() * 30);
@@ -70,5 +38,28 @@ class ComputerAI {
       payout += gameTurn.userBet * 30;
     }
     return payout;
+  }
+
+  sendGameToServer() {
+    fetch("http://localhost:3000/games", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("jwt_token")}`,
+      },
+      body: JSON.stringify({
+        game: {
+          bet_amount: 50,
+          matching_square: false,
+          matching_color: true,
+          payout: 50,
+        },
+      }),
+    })
+      .then((r) => r.json())
+      .then((obj) => {
+        console.log(obj);
+      });
   }
 }

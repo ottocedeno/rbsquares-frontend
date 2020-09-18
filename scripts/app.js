@@ -6,20 +6,18 @@ class App {
   run() {
     if (sessionStorage.getItem("jwt_token")) {
       this.retrieveUser();
-      setTimeout(() => this.renderGameLayout(), 800);
+      setTimeout(() => GameLayout.renderLayout(), 800);
     } else {
       this.createWelcomeContainer();
       Login.renderLogin("animate__fadeInUp");
     }
   }
 
-  renderGameLayout() {
-    this.clearDOM();
-    APP.container.classList.remove("flex-center");
-
-    Nav.renderNav();
-    Game.renderBoard();
-    Game.renderBetting();
+  loadGame(userObj) {
+    APP.setUser(userObj);
+    APP.setSession(userObj.jwt);
+    // APP.renderGameLayout(userObj);
+    GameLayout.renderLayout();
   }
 
   createWelcomeContainer() {
