@@ -22,6 +22,11 @@ class Nav {
     rules.id = "rules";
     rules.innerText = "Rules";
 
+    scoreboard.addEventListener("click", (e) => {
+      e.preventDefault();
+      console.log("Loading scoreboard!");
+    });
+
     navLinks.append(scoreboard, rules);
 
     nav.append(userInfo, navLinks);

@@ -18,6 +18,11 @@ nav ul:last-child {
   display: flex;
 }
 
+li#scoreboard,
+li#rules {
+  cursor: pointer;
+}
+
 li#rules {
   margin-left: 12px;
 }
