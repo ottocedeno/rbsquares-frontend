@@ -45,6 +45,13 @@ button.btn-secondary {
   color: #24272b;
   text-transform: uppercase;
   font-weight: bold;
+  cursor: pointer;
+}
+
+button.btn-secondary:hover {
+  color: #e6e6e6;
+  background-color: #24272b;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.16);
 }
 
 button:disabled {
