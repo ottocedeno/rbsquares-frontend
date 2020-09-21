@@ -129,6 +129,9 @@ class GameLayout {
   static renderWinningSquare(winningSquare) {
     winningSquare.dataset.winner = true;
     winningSquare.classList.add("animate__tada");
+    setTimeout(() => {
+      winningSquare.classList.remove("animate__tada");
+    }, 500);
   }
 
   static updateUserBalance(updatedBalance) {
