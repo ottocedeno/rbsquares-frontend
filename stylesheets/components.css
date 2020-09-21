@@ -36,6 +36,17 @@ button.btn-primary {
   cursor: pointer;
 }
 
+button.btn-secondary {
+  width: 100%;
+  min-height: 40px;
+  border: 2px solid #24272b;
+  background-color: #e6e6e6;
+  border-radius: 5px;
+  color: #24272b;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
 button:disabled {
   box-shadow: none;
   border: 2px solid #e6e6e6;
@@ -44,7 +55,7 @@ button:disabled {
   opacity: 0.8;
 }
 
-#dim {
+.dim-container {
   background-color: black;
   opacity: 0.5;
   z-index: 100;
@@ -53,4 +64,47 @@ button:disabled {
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+#result-container {
+  z-index: 101;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#result-card {
+  width: 250px;
+  height: 250px;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: #e6e6e6;
+  text-align: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.16);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#result-card h1 {
+  font-size: 1.7rem;
+  text-transform: uppercase;
+}
+
+#result-card h2 {
+  font-size: 3rem;
+  color: #24272b;
+}
+
+h1.winner {
+  color: #148f51;
+}
+
+h1.loser {
+  color: #c73c3c;
 }

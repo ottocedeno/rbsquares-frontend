@@ -132,4 +132,45 @@ class GameLayout {
     USER.balance = updatedBalance;
     userBalance.innerText = `$${USER.balance}`;
   }
+
+  static renderResultCard(game) {
+    const dimContainer = document.createElement("div");
+    dimContainer.className = "dim-container";
+
+    const resultContainer = document.createElement("div");
+    resultContainer.id = "result-container";
+
+    const resultCard = document.createElement("div");
+    resultCard.id = "result-card";
+
+    const resultTitle = document.createElement("h1");
+    if (game.payout > 0) {
+      resultTitle.innerText = "winner";
+      resultTitle.className = "winner";
+    } else {
+      resultTitle.innerText = "try again";
+      resultTitle.className = "loser";
+    }
+
+    const resultPayout = document.createElement("h2");
+    resultPayout.innerText = `$${game.payout}`;
+
+    const playAgainBtn = document.createElement("button");
+    playAgainBtn.className = "btn-secondary";
+    playAgainBtn.innerText = "play again";
+    playAgainBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      GameLayout.removeResultCard(e.target.parentNode);
+    });
+
+    resultCard.append(resultTitle, resultPayout, playAgainBtn);
+    resultContainer.appendChild(resultCard);
+    APP.container.append(dimContainer, resultContainer);
+  }
+
+  static removeResultCard(resultCard) {
+    let resultContainer = resultCard.parentNode;
+    resultContainer.previousElementSibling.remove();
+    resultContainer.remove();
+  }
 }

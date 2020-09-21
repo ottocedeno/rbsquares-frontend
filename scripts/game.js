@@ -76,11 +76,11 @@ class Game {
       .then((resp) => resp.json())
       .then((userObj) => {
         if (userObj.user) {
-          console.log(userObj);
           GameLayout.updateUserBalance(userObj.user.data.attributes.balance);
+          setTimeout(() => {
+            GameLayout.renderResultCard(this);
+          }, 1100);
         }
-        //GameLayout.updateUserBalance()
-        //GameLayout.renderResultCard()
       });
   }
 }
