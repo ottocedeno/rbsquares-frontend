@@ -99,13 +99,15 @@ class GameLayout {
   }
 
   static userBet() {
-    return Array.from(document.getElementsByClassName("btn-bet")).find(
-      (btn) => btn.dataset.userBet == "true"
-    );
+    return this.allBetBtns().find((btn) => btn.dataset.userBet == "true");
   }
 
   static allSquares() {
     return Array.from(document.getElementsByClassName("square"));
+  }
+
+  static allBetBtns() {
+    return Array.from(document.getElementsByClassName("btn-bet"));
   }
 
   static enableSpin() {
@@ -163,7 +165,8 @@ class GameLayout {
     playAgainBtn.innerText = "play again";
     playAgainBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      GameLayout.removeResultCard(e.target.parentNode);
+      this.removeResultCard(e.target.parentNode);
+      this.resetGameBoard();
     });
 
     resultCard.append(resultTitle, resultPayout, playAgainBtn);
@@ -175,5 +178,18 @@ class GameLayout {
     let resultContainer = resultCard.parentNode;
     resultContainer.previousElementSibling.remove();
     resultContainer.remove();
+  }
+
+  static resetGameBoard() {
+    this.allSquares().forEach((square) => {
+      square.dataset.userSelection = false;
+      square.dataset.winner = false;
+    });
+
+    this.allBetBtns().forEach((btn) => {
+      btn.dataset.userBet = false;
+    });
+
+    this.spinButton().disabled = true;
   }
 }
