@@ -9,10 +9,10 @@ class Game {
     this.payout = this.calculatePayout();
   }
 
-  static spin() {
+  static createGame() {
     const game = new Game();
-    console.log(game);
-    debugger;
+    GameLayout.renderWinningSquare(game.winningSquare);
+    game.saveGameToServer();
   }
 
   findUserSquareNumber() {
@@ -54,5 +54,33 @@ class Game {
       payout += this.userBet * 30;
     }
     return payout;
+  }
+
+  saveGameToServer() {
+    fetch("http://localhost:3000/games", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("jwt_token")}`,
+      },
+      body: JSON.stringify({
+        game: {
+          bet_amount: this.userBet,
+          matching_square: this.matchingSquare(),
+          matching_color: this.matchingColor(),
+          payout: this.calculatePayout(),
+        },
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((userObj) => {
+        if (userObj.user) {
+          console.log(userObj);
+          GameLayout.updateUserBalance(userObj.user.data.attributes.balance);
+        }
+        //GameLayout.updateUserBalance()
+        //GameLayout.renderResultCard()
+      });
   }
 }

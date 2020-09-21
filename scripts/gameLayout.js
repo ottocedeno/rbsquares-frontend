@@ -113,7 +113,7 @@ class GameLayout {
         this.spinButton().attributes.removeNamedItem("disabled");
         this.spinButton().addEventListener("click", (e) => {
           e.preventDefault();
-          Game.spin();
+          Game.createGame();
         });
       }
     }
@@ -121,5 +121,15 @@ class GameLayout {
 
   static spinButton() {
     return document.querySelector("div#bet-container button");
+  }
+
+  static renderWinningSquare(winningSquare) {
+    winningSquare.classList.add("winning-square", "animate__tada");
+  }
+
+  static updateUserBalance(updatedBalance) {
+    const userBalance = document.getElementById("balance");
+    USER.balance = updatedBalance;
+    userBalance.innerText = `$${USER.balance}`;
   }
 }
