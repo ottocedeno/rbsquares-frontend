@@ -22,6 +22,7 @@ class GameLayout {
       square.classList.add("square", "animate__animated", "animate__bounceIn");
       square.dataset.number = i + 1;
       square.dataset.userSelection = false;
+      square.dataset.winner = false;
       setTimeout(() => square.classList.remove("animate__bounceIn"), 300);
 
       if (i % 2 == 0) {
@@ -124,7 +125,8 @@ class GameLayout {
   }
 
   static renderWinningSquare(winningSquare) {
-    winningSquare.classList.add("winning-square", "animate__tada");
+    winningSquare.dataset.winner = true;
+    winningSquare.classList.add("animate__tada");
   }
 
   static updateUserBalance(updatedBalance) {
@@ -144,16 +146,17 @@ class GameLayout {
     resultCard.id = "result-card";
 
     const resultTitle = document.createElement("h1");
+    const resultPayout = document.createElement("h2");
     if (game.payout > 0) {
       resultTitle.innerText = "winner";
       resultTitle.className = "winner";
+      resultPayout.innerText = `$${game.payout}`;
     } else {
-      resultTitle.innerText = "try again";
+      resultTitle.innerText = "loser";
       resultTitle.className = "loser";
+      resultPayout.innerText = `-$${game.userBet}`;
+      resultPayout.className = "loser";
     }
-
-    const resultPayout = document.createElement("h2");
-    resultPayout.innerText = `$${game.payout}`;
 
     const playAgainBtn = document.createElement("button");
     playAgainBtn.className = "btn-secondary";
