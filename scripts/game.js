@@ -10,7 +10,7 @@ class Game {
   }
 
   static createGame() {
-    const game = new Game();
+    let game = new Game();
     GameLayout.renderWinningSquare(game.winningSquare);
     game.saveGameToServer();
   }
@@ -69,7 +69,7 @@ class Game {
           bet_amount: this.userBet,
           matching_square: this.matchingSquare(),
           matching_color: this.matchingColor(),
-          payout: this.calculatePayout(),
+          payout: this.payout,
         },
       }),
     })

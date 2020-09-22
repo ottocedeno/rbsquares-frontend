@@ -114,10 +114,7 @@ class GameLayout {
     if (!!this.userSquare() && !!this.userBet()) {
       if (this.spinButton().hasAttribute("disabled")) {
         this.spinButton().attributes.removeNamedItem("disabled");
-        this.spinButton().addEventListener("click", (e) => {
-          e.preventDefault();
-          Game.createGame();
-        });
+        this.spinButton().addEventListener("click", Game.createGame);
       }
     }
   }
@@ -192,7 +189,7 @@ class GameLayout {
     this.allBetBtns().forEach((btn) => {
       btn.dataset.userBet = false;
     });
-
+    this.spinButton().removeEventListener("click", Game.createGame);
     this.spinButton().disabled = true;
   }
 }
