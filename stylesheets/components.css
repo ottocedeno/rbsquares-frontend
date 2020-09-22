@@ -113,16 +113,13 @@ button:disabled {
   color: #24272b;
 }
 
-h1.winner {
+h1.winner,
+#scoreboard-card h1 {
   color: #148f51;
 }
 
 h1.loser {
   color: #c73c3c;
-}
-
-#scoreboard-card h1 {
-  color: #24272b;
 }
 
 #scoreboard-card ul {
