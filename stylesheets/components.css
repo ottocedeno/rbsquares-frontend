@@ -75,7 +75,8 @@ button:disabled {
   right: 0;
 }
 
-#result-container {
+#result-container,
+#scoreboard-container {
   z-index: 101;
   position: absolute;
   top: 0;
@@ -87,9 +88,10 @@ button:disabled {
   align-items: center;
 }
 
-#result-card {
+#result-card,
+#scoreboard-card {
   width: 250px;
-  height: 250px;
+  min-height: 250px;
   padding: 30px;
   border-radius: 20px;
   background-color: #e6e6e6;
@@ -100,8 +102,9 @@ button:disabled {
   justify-content: space-between;
 }
 
-#result-card h1 {
-  font-size: 1.7rem;
+#result-card h1,
+#scoreboard-card h1 {
+  font-size: 1.6rem;
   text-transform: uppercase;
 }
 
@@ -116,4 +119,21 @@ h1.winner {
 
 h1.loser {
   color: #c73c3c;
+}
+
+#scoreboard-card h1 {
+  color: #24272b;
+}
+
+#scoreboard-card ul {
+  margin: 20px 0 20px 0;
+}
+#scoreboard-card ul li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+#scoreboard-card ul li p {
+  color: #24272b;
 }
