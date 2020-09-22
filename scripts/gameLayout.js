@@ -138,8 +138,7 @@ class GameLayout {
   }
 
   static renderResultCard(game) {
-    const dimContainer = document.createElement("div");
-    dimContainer.className = "dim-container";
+    const dimContainer = Utility.createDimBackground();
 
     const resultContainer = document.createElement("div");
     resultContainer.id = "result-container";
@@ -165,12 +164,12 @@ class GameLayout {
     }
 
     const playAgainBtn = document.createElement("button");
-    playAgainBtn.classList = "btn-secondary";
+    playAgainBtn.className = "btn-secondary";
     playAgainBtn.innerText = "play again";
     playAgainBtn.addEventListener("click", (e) => {
       e.target.parentNode.classList.add("animate__flipOutX");
       setTimeout(() => {
-        this.removeResultCard(e.target.parentNode);
+        Utility.removeCard(e.target.parentNode);
         this.resetGameBoard();
       }, 1000);
     });
@@ -178,12 +177,6 @@ class GameLayout {
     resultCard.append(resultTitle, resultPayout, playAgainBtn);
     resultContainer.appendChild(resultCard);
     APP.container.append(dimContainer, resultContainer);
-  }
-
-  static removeResultCard(resultCard) {
-    let resultContainer = resultCard.parentNode;
-    resultContainer.previousElementSibling.remove();
-    resultContainer.remove();
   }
 
   static resetGameBoard() {
