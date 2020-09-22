@@ -34,6 +34,7 @@ button.btn-primary {
   min-height: 50px;
   box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.16);
   cursor: pointer;
+  transition: background-color 0.5s, color 0.4s;
 }
 
 button.btn-secondary {
@@ -46,6 +47,7 @@ button.btn-secondary {
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.5s, color 0.4s, box-shadow 0.5s;
 }
 
 button.btn-secondary:hover {
