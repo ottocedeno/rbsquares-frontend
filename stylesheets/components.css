@@ -34,7 +34,7 @@ button.btn-primary {
   min-height: 50px;
   box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.16);
   cursor: pointer;
-  transition: background-color 0.5s, color 0.4s;
+  transition: background-color 0.7s, color 0.6s;
 }
 
 button.btn-secondary {
