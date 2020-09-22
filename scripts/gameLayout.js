@@ -145,6 +145,10 @@ class GameLayout {
     resultContainer.id = "result-container";
 
     const resultCard = document.createElement("div");
+    resultCard.classList.add("animate__animated", "animate__flipInX");
+    setTimeout(() => {
+      resultCard.classList.remove("animate__flipInX");
+    }, 1300);
     resultCard.id = "result-card";
 
     const resultTitle = document.createElement("h1");
@@ -161,12 +165,14 @@ class GameLayout {
     }
 
     const playAgainBtn = document.createElement("button");
-    playAgainBtn.className = "btn-secondary";
+    playAgainBtn.classList = "btn-secondary";
     playAgainBtn.innerText = "play again";
     playAgainBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      this.removeResultCard(e.target.parentNode);
-      this.resetGameBoard();
+      e.target.parentNode.classList.add("animate__flipOutX");
+      setTimeout(() => {
+        this.removeResultCard(e.target.parentNode);
+        this.resetGameBoard();
+      }, 1000);
     });
 
     resultCard.append(resultTitle, resultPayout, playAgainBtn);
